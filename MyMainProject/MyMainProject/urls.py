@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from MyMainProject import views
+from . import views
 
 urlpatterns = [
     path('LinearRegression/', include('LinearRegression.urls')),
     path('admin/', admin.site.urls),
-    path('',views.home,name="HomePage")
+    path('',views.home,name="HomePage"),
 ]
