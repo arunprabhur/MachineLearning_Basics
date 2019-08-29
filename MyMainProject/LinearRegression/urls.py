@@ -3,5 +3,5 @@ from django.urls import path
 from LinearRegression import views
 
 urlpatterns = [
-    path('', views.hello, name='LR View'),
+    path('', views.lr, name='LR View'),
 ]
