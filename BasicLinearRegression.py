@@ -1,20 +1,34 @@
 from sklearn import linear_model
 import matplotlib.pyplot as plt
-X = [[1],[2],[3],[4]]
-Y = [2,4,6,8]
-print("X Y")
-for row in zip(X,Y):
-    print(row[0][0], "-->", row[0])
-plt.scatter(X,Y,color="red")
-plt.xlabel("X Axis")
-plt.ylabel("Y Axis")
+
+#creating dataset
+Year = [[2000],[2001],[2002],[2003]]
+Price = [10000,12000,13000,14000]
+
+#Display mapping
+for row in zip(Year,Price):
+    print(row[0][0], "-->", row[1])
+
+#plotting graph for dataset using matplotlib
+plt.scatter(Year,Price,color="red")
+plt.xlabel("Year")
+plt.ylabel("Price")
+
+#creating model using scikit-learn
 r=linear_model.LinearRegression()
-r.fit(X,Y)
+r.fit(Year,Price)
+
+#Get co-eff and intercept for y = mx + b
 m=r.coef_[0]
 b=r.intercept_
 print("slope=",m, "intercept=",b)
-predicted_values = [r.coef_ * i + r.intercept_ for i in X]
+
+#Predict Values and draw graph
+predicted_values = [r.coef_ * i + r.intercept_ for i in Year]
 print(predicted_values)
-plt.plot(X,predicted_values,'b')
-FuturePrediction = r.coef_ * 10 + r.intercept_
+plt.plot(Year,predicted_values,'b')
+plt.savefig('graph.png')
+
+#Prediction for Future 
+FuturePrediction = r.coef_ * 2005 + r.intercept_
 print("Prediction of 10 is", FuturePrediction)
