@@ -1,9 +1,10 @@
 from sklearn import linear_model
+from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 
 #creating dataset
-Year = [[2000],[2001],[2002],[2003]]
-Price = [10000,12000,13000,14000]
+Year = [[2000],[2001],[2002],[2003],[2000],[2001],[2002],[2003],[2000],[2001],[2002],[2003]]
+Price = [10000,12000,13000,14000,10500,12500,13005,14000,10040,12050,13500,14500]
 
 #Display mapping
 for row in zip(Year,Price):
@@ -30,5 +31,13 @@ plt.plot(Year,predicted_values,'b')
 plt.savefig('graph.png')
 
 #Prediction for Future 
-FuturePrediction = r.coef_ * 2005 + r.intercept_
-print("Prediction of 10 is", FuturePrediction)
+FuturePrediction = r.coef_[0] * 2003 + r.intercept_
+print("Prediction of 2003 is", FuturePrediction)
+
+#Accuracy findings
+print("Prediction function from scikit-learn",r.predict([[2003]]))
+y_true = Year
+y_pred = predicted_values
+
+print("Mean squred error is" , mean_squared_error(y_true, y_pred))
+print("R2 Score Function" , r2_score(y_true, y_pred))
